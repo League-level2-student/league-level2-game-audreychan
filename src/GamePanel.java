@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	final int gameState = 1;
 	final int endState = 2;
 	final int icState = 3; //ic stands for instruction/credits
-	int currentState = gameState;
+	int currentState = titleState;
 	
 	Paddle right = new Paddle(10, 375, 10, 50);
 	Paddle left = new Paddle(FourPong.length - 10, 375, 10, 50);
