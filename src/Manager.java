@@ -45,7 +45,7 @@ public class Manager {
 				score++;
 				counter = 0;
 			}
-			if (panel.isWPressed) {
+			if (panel.isRUPressed) {
 				System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 1.5;

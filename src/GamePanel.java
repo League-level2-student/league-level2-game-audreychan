@@ -20,7 +20,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	final int gameState = 1;
 	final int endState = 2;
 	final int icState = 3; // ic stands for instruction/credits
+	//final int settingState = 4;
 	int currentState = titleState;
+	
+//	final int noState = 0;
+//	final int initialState = 1;
+//	final int secondaryState = 2;
+//	int setState = noState;
 
 	Paddle right = new Paddle(10, 350, 10, 100);
 	Paddle left = new Paddle(FourPong.length - 20, 350, 10, 100);
@@ -29,7 +35,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Ball ball = new Ball(388, 388, 15, 15);
 	Manager manager = new Manager(right, left, up, down, ball, this);
 
-	boolean isWPressed = false;
+	boolean isRUPressed = false;//Right Up
 	boolean isSPressed = false;
 	boolean isAPressed = false;
 	boolean isDPressed = false;
@@ -39,8 +45,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	boolean isRightPressed = false;
 
 	boolean isPaused = false;
-	double xPauseSpeed;
-	double yPauseSpeed;
+	
+	int ru = 87; //right up key
 
 	public GamePanel() {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -125,6 +131,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.drawLine(400, 0, 400, 800);
 
 	}
+	
+//	void drawSettingState(Graphics g) {
+//		g.setColor(new Color(23, 3, 40));
+//		g.fillRect(0, 0, FourPong.length, FourPong.length);
+//	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -137,10 +148,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		} else if (currentState == icState) {
 			drawICState(g);
 		}
+//		else if(currentState == settingState) {
+//			drawSettingState(g);
+//		}
 	}
 
 	void move() {
-		if (isWPressed) {
+		if (isRUPressed) {
 			right.y -= right.speed;
 		}
 		if (isSPressed) {
@@ -188,19 +202,28 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		return scoreString.length();
 	}
 
+//	void setting() {
+//		
+//	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		// System.out.println(e.getKeyCode());
-
+		//System.out.println(e.getKeyCode() + " typed");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getKeyCode());
-		if (e.getKeyCode() == 87) { //
-			isWPressed = true;
+		System.out.println(e.getKeyCode() + " pressed");
+//		if(currentState == titleState && e.getKeyCode() != 66) {
+//			test = e.getKeyCode();
+//		}
+//		if(e.getKeyCode() == test) {
+//			System.out.println("test");
+//		}
+		if (e.getKeyCode() == ru) { //
+			isRUPressed = true;
 		} else if (e.getKeyCode() == 83) { //
 			isSPressed = true;
 		}
@@ -233,6 +256,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		if (e.getKeyCode() == 86) { // v
 			if (currentState == titleState || currentState == gameState) {
 				currentState = endState;
+			} else if (currentState == endState) {
+				currentState = titleState;
 			}
 		}
 		if (e.getKeyCode() == 66) { // b
@@ -242,13 +267,23 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 				currentState = titleState;
 			}
 		}
+//		if(e.getKeyCode() == 78) { //n
+//			if(currentState == titleState || currentState == icState) {
+//				currentState = settingState;
+//			} else if(currentState == settingState) {
+//				currentState = titleState;
+//			}
+//		}
+//		if(currentState == settingState) {
+//			
+//		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == 87) { // w
-			isWPressed = false;
+			isRUPressed = false;
 		}
 		if (e.getKeyCode() == 83) { //
 			isSPressed = false;
@@ -281,5 +316,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		if (currentState == gameState && isPaused == false) {
 			updateGameState();
 		}
+//		if(currentState == settingState) {
+//			setting();
+//		}
 	}
 }
