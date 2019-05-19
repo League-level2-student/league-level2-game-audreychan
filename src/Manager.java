@@ -50,7 +50,7 @@ public class Manager {
 				ball.yspeed = 3;
 				ball.yspeed = 1.5;
 			}
-			if (panel.isSPressed) {
+			if (panel.isRDPressed) {
 				System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 4.5;
