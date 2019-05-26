@@ -1,4 +1,7 @@
+import java.applet.AudioClip;
 import java.awt.Graphics;
+
+import javax.swing.JApplet;
 
 public class Manager {
 
@@ -40,6 +43,7 @@ public class Manager {
 
 	void checkCollision() {
 		if (right.collisionBox.intersects(ball.collisionBox)) {
+			blip();
 			ball.xspeed = Math.abs(ball.xspeed);
 			if (counter > 3) {
 				score++;
@@ -57,65 +61,73 @@ public class Manager {
 			}
 		}
 		if (left.collisionBox.intersects(ball.collisionBox)) {
+			blip();
 			ball.xspeed = -Math.abs(ball.xspeed);
 			if (counter > 3) {
 				score++;
 				counter = 0;
 			}
-			if (panel.isUpPressed) {
+			if (panel.isLUPressed) {
 				System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 1.5;
 			}
-			if (panel.isDownPressed) {
+			if (panel.isLDPressed) {
 				System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 4.5;
 			}
 		}
 		if (up.collisionBox.intersects(ball.collisionBox)) {
+			blip();
 			ball.yspeed = Math.abs(ball.yspeed);
 			if (counter > 3) {
 				score++;
 				counter = 0;
 			}
-			if (panel.isAPressed) {
+			if (panel.isULPressed) {
 				System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 1.5;
 			}
-			if (panel.isDPressed) {
+			if (panel.isURPressed) {
 				System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 4.5;
 			}
 		}
 		if (down.collisionBox.intersects(ball.collisionBox)) {
+			blip();
 			ball.yspeed = -Math.abs(ball.yspeed);
 			if (counter > 3) {
 				score++;
 				counter = 0;
 			}
-			if (panel.isLeftPressed) {
+			if (panel.isDLPressed) {
 				System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 1.5;
 			}
-			if (panel.isRightPressed) {
+			if (panel.isDRPressed) {
 				System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 4.5;
 			}
 		}
 		if (ball.x <= -20 || ball.x >= 820) {
-			panel.currentState = panel.endState;
+			GamePanel.currentState = GamePanel.endState;
 		} else if (ball.y <= -20 || ball.y >= 820) {
-			panel.currentState = panel.endState;
+			GamePanel.currentState = GamePanel.endState;
 		}
 	}
 
 	int getScore() {
 		return score;
+	}
+
+	private void blip() {
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource("blip.wav"));
+		sound.play();
 	}
 
 }
