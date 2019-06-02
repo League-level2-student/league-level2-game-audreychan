@@ -7,23 +7,28 @@ Audrey Chan
 *<*IMAGES*>*
 *<*ENDALLIMAGES*>*
 *<*FONT*>*
-Chicle
+Roboto
 *<*COLORS*>*
-109
-134
-204
+177
+186
+210
 *<*QUESTIONS*>*
 I had initially wanted to do a totally different game, but I think it was too complex and beyond my current skill level, so I looked at the demo games. I saw someone that had done a pong game, which had made me think of how I could make a more complex pong for myself. I wanted to do something that was harder to program, but not impossible, so I made pong where you have to control all four walls instead of just two.
-*<*ENDQUESTION*>*
-I learned that people needed to be able to know how to get instructions easier, so I added text to the game screen telling them how to get there. I also learned that some people wanted to be able to play the game with more people, so I added a KeyRebind class to allow them to change the controls to their preference. 
-*<*ENDQUESTION*>*
-There are four major classes to the program, the main method FourPong, the GamePanel, the GameObject, and the Manager. There are also three other smaller classes Ball, Paddle, KeyInput, and KeyRebind. FourPong creates the frame and the GamePanel, as well as setting up. The GamePanel creates all of the different states, the text and graphics, and the paddle movement. The GameObject creates the base class for Ball and Paddle, which each setup the different graphics, collision boxes, and speeds. The Manager checks collisions for the GameObjects and makes other game mechanics to add interest to the game (different speeds based on type of collision, sound, and score). KeyRebind creates a way to rebind the different keys to the user's preference. KeyInput has all of the listeners for the different key controls in GamePanel.
-*<*ENDQUESTION*>*
 
 *<*ENDQUESTION*>*
+I learned that people needed to be able to know how to get instructions easier, so I added text to the game screen telling them how to get there. I also learned that some people wanted to be able to play the game with more people, so I added a KeyRebind class to allow them to change the controls to their preference. 
+
+*<*ENDQUESTION*>*
+There are four major classes to the program, the main method FourPong, the GamePanel, the GameObject, and the Manager. There are also three other smaller classes Ball, Paddle, KeyInput, and KeyRebind. FourPong creates the frame and the GamePanel, as well as setting up. The GamePanel creates all of the different states, the text and graphics, and the paddle movement. The GameObject creates the base class for Ball and Paddle, which each setup the different graphics, collision boxes, and speeds. The Manager checks collisions for the GameObjects and makes other game mechanics to add interest to the game (different speeds based on type of collision, sound, and score). KeyRebind creates a way to rebind the different keys to the user's preference. KeyInput has all of the listeners for the different key controls in GamePanel.
+
+*<*ENDQUESTION*>*
+I think the most complex part of my code is the KeyRebind. It is a class that allows you to change all of the controls for the different paddles according to your preference. To do this, it opens a new frame in a game state called settingState. The frame has a list of letters and buttons, which are each corresponding parts of different arrays. For example, the key that makes the right paddle move up is at location 0 in all of the different arrays. When you press a button, it opens a JOptionPane that asks you to enter a key. This input is then put into another array. These different arrays are then later called in the KeyInput class that acts as the keyListener for the GamePanel and in the icState (instruction/credits state) to give the current controls. 
+*<*ENDQUESTION*>*
+
 
 *<*ENDQUESTION*>*
 I would add other game modes, so that instead of the paddles and ball simply being white outlines, they would have different images/skins that you could switch out.
+
 *<*ENDQUESTION*>*
 *<*CUSTOMTOPICS*>*
 *#*EOF*#*

@@ -149,12 +149,12 @@ public class GamePanel extends JPanel implements ActionListener {
 		g.drawString("V: End game early", 40, 162);
 		g.drawString("B: Return to start", 40, 196);
 		g.drawString("N: Rebind keys", 40, 230);
-		g.drawString(rebind.labels[2].getText().toUpperCase() + " & " + rebind.labels[3].getText().toUpperCase() + ": Top paddle", 40, 264);
-		g.drawString(rebind.labels[4].getText().toUpperCase() + " & " + rebind.labels[5].getText().toUpperCase() + ": Left paddle", 40, 298);
-		g.drawString(rebind.labels[6].getText().toUpperCase() + " & " + rebind.labels[7].getText().toUpperCase() + ": Bottom paddle", 40, 332);
-		g.drawString(rebind.labels[0].getText().toUpperCase() + " & " + rebind.labels[1].getText().toUpperCase() + ": Right paddle", 40, 366);
+		g.drawString(rebind.labels[0].getText().toUpperCase() + " & " + rebind.labels[1].getText().toUpperCase() + ": Right paddle", 40, 264);
+		g.drawString(rebind.labels[2].getText().toUpperCase() + " & " + rebind.labels[3].getText().toUpperCase() + ": Top paddle", 40, 298);
+		g.drawString(rebind.labels[4].getText().toUpperCase() + " & " + rebind.labels[5].getText().toUpperCase() + ": Left paddle", 40, 332);
+		g.drawString(rebind.labels[6].getText().toUpperCase() + " & " + rebind.labels[7].getText().toUpperCase() + ": Bottom paddle", 40, 366);
 
-		g.drawString("Me.", 440, 128);
+		g.drawString("Audrey Chan - Creator", 440, 128);
 
 		g.drawLine(400, 0, 400, 800); 
 	}
@@ -168,7 +168,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		g.drawString("Settings", 300, 74);
 		
 		g.setFont(textFont);
-		g.drawString("To rebind keys, press the button below the you want to change,", 60, 162);
+		g.drawString("To rebind keys, press the button below the key you want to change,", 50, 162);
 		g.drawString("then enter a new letter into the text field.", 170, 196);
 		g.drawString("For arrow keys, write out the direction of the key (i.e. left)", 90, 264);
 		g.drawString("To get back to title screen, press the back button at the bottom.", 60, 332);
