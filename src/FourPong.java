@@ -6,6 +6,7 @@ public class FourPong {
 	
 	JFrame frame;
 	GamePanel panel;
+	KeyInput input;
 	
 	static int length = 800;
 	
@@ -17,12 +18,13 @@ public class FourPong {
 	public FourPong() {
 		frame = new JFrame();
 		panel = new GamePanel();
+		input = new KeyInput(panel);
 	}
 	
 	void setup() {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addKeyListener(panel);
+		frame.addKeyListener(input);
 		
 		frame.add(panel);
 		

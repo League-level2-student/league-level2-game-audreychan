@@ -50,12 +50,12 @@ public class Manager {
 				counter = 0;
 			}
 			if (panel.isRUPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 1.5;
 			}
 			if (panel.isRDPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 4.5;
 			}
@@ -68,12 +68,12 @@ public class Manager {
 				counter = 0;
 			}
 			if (panel.isLUPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 1.5;
 			}
 			if (panel.isLDPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.yspeed = 3;
 				ball.yspeed = 4.5;
 			}
@@ -86,12 +86,12 @@ public class Manager {
 				counter = 0;
 			}
 			if (panel.isULPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 1.5;
 			}
 			if (panel.isURPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 4.5;
 			}
@@ -104,12 +104,12 @@ public class Manager {
 				counter = 0;
 			}
 			if (panel.isDLPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 1.5;
 			}
 			if (panel.isDRPressed) {
-				System.out.println("extra");
+				//System.out.println("extra");
 				ball.xspeed = 3;
 				ball.xspeed = 4.5;
 			}

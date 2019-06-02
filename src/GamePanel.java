@@ -11,7 +11,7 @@ import javax.swing.JApplet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements KeyListener, ActionListener {
+public class GamePanel extends JPanel implements ActionListener {
 
 	Font titleFont;
 	Font textFont;
@@ -44,13 +44,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
 	boolean isPaused = false;
 	
-	String pauseText;
-	
-//	int changeKey;
-//	int ru = 87; //right up key - default: W
-//	int rd = 83; //right down - default: S
+	String pauseTextOne;
+	String pauseTextTwo;
 	
 	KeyRebind rebind;
+	
+	int highscore = 0;
+	boolean newHighscore = false;
 
 	public GamePanel() {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -93,12 +93,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		
 		g.setFont(smallFont);
 		if(isPaused) {
-			pauseText = "Press SPACE to unpause";
-			g.drawString("Press B to get instructions", 600, 66);
+			pauseTextOne = "Press SPACE to unpause";
+			pauseTextTwo = "Press B to get instructions";
 		} else {
-			pauseText = "Press SPACE to pause";
+			pauseTextOne = "Press SPACE to pause";
+			pauseTextTwo = "Pause and Press B to get instructions";
 		}
-		g.drawString(pauseText, 600, 40);
+		g.drawString(pauseTextOne, 20, 754);
+		g.drawString(pauseTextTwo, 20, 780);
 
 		manager.draw(g);
 	}
@@ -114,6 +116,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.setFont(textFont);
 		g.drawString("Press SPACE to play again.", 245, 400);
 		g.drawString("Press B to get instructions.", 250, 430);
+		g.drawString("Press V to return to start.", 257, 460);
 
 		if (manager.score == 0) {
 			g.drawString("You got no points.", 290, 270);
@@ -121,6 +124,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 			g.drawString("You got 1 point.", 300, 270);
 		} else {
 			g.drawString("You got " + manager.score + " points.", 300 - (scoreDigit() * 5), 270);
+		}
+		
+		if (manager.score > highscore || newHighscore) {
+			highscore = manager.score;
+			newHighscore = true;
+			g.drawString("New Highscore!", 300, 300);
+		} else if (newHighscore == false) {
+			g.drawString("Highscore: " + highscore, 320 - (scoreDigit() * 5), 300);
 		}
 	}
 
@@ -220,6 +231,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		ball.xspeed = 3;
 		ball.yspeed = 1.5;
 		manager.score = 0;
+		newHighscore = false;
 	}
 
 	int scoreDigit() {
@@ -227,113 +239,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		return scoreString.length();
 	}
 	
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		//System.out.println(e.getKeyCode() + " typed");
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println(e.getKeyCode() + " pressed");
-//		if(currentState == titleState && e.getKeyCode() != 66) {
-//			test = e.getKeyCode();
-//		}
-//		if(e.getKeyCode() == test) {
-//			System.out.println("test");
-//		}
-		System.out.println(rebind.keys[0]);
-		if (e.getKeyCode() == rebind.keys[0]) { //
-			isRUPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[1]) { //
-			isRDPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[2]) { //
-			isULPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[3]) { //
-			isURPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[4]) { //
-			isLUPressed = true;
-		} 
-		if (e.getKeyCode() == rebind.keys[5]) { //
-			isLDPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[6]) { //
-			isDLPressed = true;
-		}
-		if (e.getKeyCode() == rebind.keys[7]) { //
-			isDRPressed = true;
-		}
-
-		if (e.getKeyCode() == 32) { // Space (shift: 16)
-			//System.out.println("space");
-			if (currentState == titleState || currentState == endState || currentState == icState) {
-				currentState = gameState;
-				reset();
-				System.out.println(currentState);
-			} else if (currentState == gameState) {
-				isPaused = !isPaused;
-			} 
-		}
-		if (e.getKeyCode() == 86) { // v
-			if (currentState == titleState || currentState == gameState) {
-				currentState = endState;
-			} else if (currentState == endState) {
-				currentState = titleState;
-			}
-		}
-		if (e.getKeyCode() == 66) { // b
-			if (currentState == titleState || currentState == gameState && isPaused || currentState == endState) {
-				currentState = icState;
-			} else if (currentState == icState) {
-				currentState = titleState;
-			}
-		}
-		
-		
-		
-		if(e.getKeyCode() == 78) { //n
-			if(currentState == titleState || currentState == icState) {
-				currentState = settingState;
-			} else if(currentState == settingState) {
-				currentState = titleState;
-			}
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getKeyCode() == rebind.keys[0]) { // 
-			isRUPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[1]) { //
-			isRDPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[2]) { //
-			isULPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[3]) { //
-			isURPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[4]) { //
-			isLUPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[5]) { //
-			isLDPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[6]) { //
-			isDLPressed = false;
-		}
-		if (e.getKeyCode() == rebind.keys[7]) { //
-			isDRPressed = false;
-		}
-
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
